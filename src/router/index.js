@@ -60,7 +60,18 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  {
+    path: '/upload',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'upload',
+        component: () => import('@/views/upload'),
+        meta: { title: 'upload', icon: 'example' }
+      }
+    ]
+  },
 
   { path: '*', redirect: '/404', hidden: true }
 ]

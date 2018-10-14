@@ -35,11 +35,11 @@
 import { mapState } from 'vuex'
 function defaultDetail() {
   return {
-    accessKeySecret: '',
-    accessKeyId: '',
-    region: '',
-    bucket: '',
-    type: '',
+    accessKeySecret: 'a',
+    accessKeyId: 'b',
+    region: 'c',
+    bucket: 'd',
+    type: 'e',
     des: ''
   }
 }
@@ -74,13 +74,38 @@ export default {
     }
   },
   methods: {
-    submit() {
+    submit(item) {
       this.$refs.detailForm.validate(valid => {
         if (!valid) { return }
-        this.$store.dispatch('osskey/createOsskey', this.form).then(res => {
-          console.log(res)
-        })
-        this.$emit('update')
+        if (this.isNew) {
+          this.newOsskey()
+        } else {
+          this.updateOsskey()
+        }
+      })
+    },
+    newOsskey() {
+      this.$store.dispatch('osskey/createOsskey', this.form).then(res => {
+        if (res.code === 200) {
+          this.show = false
+          this.$emit('update')
+        } else {
+          console.error(res)
+        }
+      }).catch(e => {
+        this.$message(e.message)
+      })
+    },
+    updateOsskey() {
+      this.$store.dispatch('osskey/updateOsskey', { id : this.detail.id, form: this.form}).then(res => {
+        if (res.code === 200) {
+          this.show = false
+          this.$emit('update')
+        } else {
+          console.error(res)
+        }
+      }).catch(e => {
+        this.$message(e.message)
       })
     },
     openDialog() {

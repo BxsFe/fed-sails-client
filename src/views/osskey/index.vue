@@ -15,9 +15,10 @@
         <el-table-column prop="bucket" label="bucket"></el-table-column>
         <el-table-column prop="type" label="type"></el-table-column>
         <el-table-column prop="des" label="des"></el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <el-button type="primary" size="mini" @click="showDetail(scope.row)">编辑</el-button>
+            <el-button type="primary" size="mini" @click="deleteDetail(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -71,6 +72,17 @@ export default {
       // 注意替换vuex 命名空间
       this.$store.commit('osskey/setDetail', item)
       this.showDetailModal = true
+    },
+    deleteDetail(item) {
+      this.$confirm('确定要删除？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('osskey/deleteOsskey', item).then(res => {
+          this.search()
+        })
+      }).catch(() => {})
     }
   }
 }

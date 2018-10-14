@@ -1,4 +1,6 @@
-import { getOsskeyList, createOsskey } from '@/api'
+import { gen } from '@/api'
+
+const osskey = gen.create('osskey')
 export default {
   namespaced: true,
   state: {
@@ -10,9 +12,7 @@ export default {
     setDetail(state, detail) {
       if (detail) {
         state.isNew = false
-        const temp = Object.assign({}, detail)
-        temp.times = [detail.startTime, detail.endTime]
-        state.detail = temp
+        state.detail = Object.assign({}, detail)
       } else {
         state.isNew = true
         state.detail = {}
@@ -21,10 +21,16 @@ export default {
   },
   actions: {
     getTableList({ state }, { page }) {
-      return getOsskeyList(page)
+      return osskey.list(page)
     },
     createOsskey({ state }, params) {
-      return createOsskey(params)
+      return osskey.create(params)
+    },
+    deleteOsskey({ state }, { id }) {
+      return osskey.delete(id)
+    },
+    updateOsskey({ state }, { id, form}) {
+      return osskey.update(id, form)
     }
   }
 }
