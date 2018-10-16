@@ -2,8 +2,9 @@
   <el-container>
     <el-upload
       class="avatar-uploader"
-      action="http://localhost:1337/upload/image"
+      action="http://localhost:1337/upload/image?hook=foo"
       name="image"
+      :data="data"
       :show-file-list="false"
       :on-success="handleAvatarSuccess"
       :before-upload="beforeAvatarUpload">
@@ -16,7 +17,10 @@
 export default {
   data() {
     return {
-      imageUrl: ''
+      imageUrl: '',
+      data: {
+        type: 'asset'
+      }
     }
   },
   created() {},

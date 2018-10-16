@@ -49,17 +49,29 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/admin-url',
+    path: '/ossPath',
     component: Layout,
     children: [
       {
         path: 'index',
-        name: 'adminUrl',
-        component: () => import('@/views/admin-url'),
-        meta: { title: 'AdminUrl', icon: 'example' }
+        name: 'ossPath',
+        component: () => import('@/views/ossPath'),
+        meta: { title: 'ossPath', icon: 'example' }
       }
     ]
   },
+  // {
+  //   path: '/admin-url',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'adminUrl',
+  //       component: () => import('@/views/admin-url'),
+  //       meta: { title: 'AdminUrl', icon: 'example' }
+  //     }
+  //   ]
+  // },
   {
     path: '/upload',
     component: Layout,

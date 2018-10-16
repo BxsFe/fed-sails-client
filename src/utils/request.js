@@ -31,13 +31,12 @@ service.interceptors.response.use(
     return response.data
   },
   error => {
-    console.log('err' + error) // for debug
-    // Message({
-    //   message: error.message,
-    //   type: 'error',
-    //   duration: 5 * 1000
-    // })
-    return Promise.reject(error)
+    console.log('err' + error.response) // for debug
+    if (error.response.data && error.response.data.message) {
+      return Promise.reject(new Error(error.response.data.message))
+    } else {
+      return Promise.reject(error)
+    } 
   }
 )
 

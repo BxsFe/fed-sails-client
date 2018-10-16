@@ -9,12 +9,9 @@
 
       <el-table :data="tableData" border>
         <el-table-column type="index" label="序号" width="50"></el-table-column>
-        <el-table-column prop="accessKeySecret" label="accessKeySecret"></el-table-column>
-        <el-table-column prop="accessKeyId" label="accessKeyId"></el-table-column>
-        <el-table-column prop="region" label="region"></el-table-column>
-        <el-table-column prop="bucket" label="bucket"></el-table-column>
-        <el-table-column prop="type" label="type"></el-table-column>
-        <el-table-column prop="des" label="des"></el-table-column>
+        <el-table-column prop="name" label="名称"></el-table-column>
+        <el-table-column prop="path" label="路径"></el-table-column>
+        <el-table-column prop="key" label="键值"></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <el-button type="primary" size="mini" @click="showDetail(scope.row)">编辑</el-button>
@@ -30,15 +27,10 @@
 </template>
 <script>
 import detailModal from './detailModal'
-const defaultSearchData = {
-  times: [],
-  name: ''
-}
 export default {
   data() {
     return {
       showDetailModal: false,
-      searchData: defaultSearchData,
       tableData: []
     }
   },
@@ -48,11 +40,10 @@ export default {
   },
   methods: {
     reset() {
-      this.searchData = defaultSearchData
       this.search(1)
     },
     search(page = 1) {
-      this.$store.dispatch('osskey/getTableList', { page }).then(res => {
+      this.$store.dispatch('ossPath/getTableList', { page }).then(res => {
         this.tableData = res.data
       })
     },
@@ -61,7 +52,7 @@ export default {
     },
     showDetail(item) {
       // 注意替换vuex 命名空间
-      this.$store.commit('osskey/setDetail', item)
+      this.$store.commit('ossPath/setDetail', item)
       this.showDetailModal = true
     },
     deleteDetail(item) {
@@ -70,7 +61,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$store.dispatch('osskey/deleteOsskey', item).then(res => {
+        this.$store.dispatch('ossPath/deleteOsskey', item).then(res => {
           this.search()
         })
       }).catch(() => {})
