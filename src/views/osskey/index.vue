@@ -13,6 +13,7 @@
         <el-table-column prop="accessKeyId" label="accessKeyId"></el-table-column>
         <el-table-column prop="region" label="region"></el-table-column>
         <el-table-column prop="bucket" label="bucket"></el-table-column>
+        <el-table-column prop="cdn" label="cdn"></el-table-column>
         <el-table-column prop="type" label="type"></el-table-column>
         <el-table-column prop="des" label="des"></el-table-column>
         <el-table-column label="操作" width="150">

@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     // 替换vuex的命名空间
-    ...mapState('upload', {
+    ...mapState('upload-assets', {
       detail: state => state.detail,
       isNew: state => state.isNew
     }),

@@ -60,27 +60,23 @@ export const constantRouterMap = [
       }
     ]
   },
-  // {
-  //   path: '/admin-url',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'adminUrl',
-  //       component: () => import('@/views/admin-url'),
-  //       meta: { title: 'AdminUrl', icon: 'example' }
-  //     }
-  //   ]
-  // },
   {
     path: '/upload',
     component: Layout,
+    name: 'upload',
+    meta: { title: '上传oss' },
     children: [
       {
-        path: 'index',
-        name: 'upload',
-        component: () => import('@/views/upload'),
-        meta: { title: 'upload', icon: 'example' }
+        path: 'upload-image',
+        name: 'image',
+        component: () => import('@/views/upload-image'),
+        meta: { title: '上传图片', icon: 'example' }
+      },
+      {
+        path: 'upload-assets',
+        name: 'assets',
+        component: () => import('@/views/upload-assets'),
+        meta: { title: '上传资源', icon: 'example' }
       }
     ]
   },

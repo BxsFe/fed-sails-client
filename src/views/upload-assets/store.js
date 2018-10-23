@@ -1,7 +1,10 @@
-// import { listMallPromotionModule } from '@/api'
+import { gen } from '@/api'
+
+const ossPath = gen.create('ossPath')
 export default {
   namespaced: true,
   state: {
+    ossPaths: [],
     isNew: false,
     detail: {}
   },
@@ -20,12 +23,14 @@ export default {
     }
   },
   actions: {
-    // 获取table的列表页
-    // getTableList({ state }, { page }) {
-    //   return listMallPromotionModule(page).then(res => {
-    //     // 在这里洗数据
-    //     return res
-    //   })
-    // }
+    getOssPath({ state }) {
+      return ossPath.list().then(res => {
+        if (res.code === 200) {
+          state.ossPaths = res.data
+        } else {
+          throw new Error(res.message || '获取ossPath失败')
+        }
+      })
+    }
   }
 }

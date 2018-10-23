@@ -13,7 +13,7 @@ class RestFulApiGen {
 			return console.error('moduleName must be string');
 		}
 		if (this.modules[moduleName]) {
-			return
+			return this.modules[moduleName]
 		}
 		return this.modules[moduleName] = this.installModule(moduleName)
 	}
@@ -35,7 +35,7 @@ class RestFulApiGen {
 		}
 		instance.delete = function deleteModuleItem(id) {
 			return request({
-				url: `/${moduleName}/destory/${id}`,
+				url: `/${moduleName}/destroy/${id}`,
 				method: 'delete'
 			})
 		}

@@ -18,6 +18,9 @@
       <el-form-item label="bucket" prop="bucket">
         <el-input v-model="form.bucket" placeholder="请输入bucket"></el-input>
       </el-form-item>
+      <el-form-item label="cdn" prop="cdn">
+        <el-input v-model="form.cdn" placeholder="请输入cdn"></el-input>
+      </el-form-item>
       <el-form-item label="type" prop="type">
         <el-input v-model="form.type" placeholder="请输入类型"></el-input>
       </el-form-item>

@@ -6,11 +6,8 @@
     @open="openDialog"
   >
     <el-form :rules="rules" :model="form" ref="detailForm" :disabled="readonly" label-width="120px">
-      <el-form-item label="name" prop="name">
-        <el-input v-model="form.name" placeholder="请输入accessKeyId"></el-input>
-      </el-form-item>
-      <el-form-item label="path" prop="path">
-        <el-input v-model="form.path" placeholder="请输入accessKeySecret"></el-input>
+      <el-form-item label="请" prop="msg">
+        <el-input v-model="form.msg" placeholder="请"></el-input>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -23,8 +20,8 @@
 import { mapState } from 'vuex'
 function defaultDetail() {
   return {
-    name: 'a',
-    path: 'b'
+    msg: '',
+    times: []
   }
 }
 export default {
@@ -33,11 +30,8 @@ export default {
       readonly: false,
       form: defaultDetail(),
       rules: {
-        name: [{
-          required: true, message: '请输入name', trigger: 'blur'
-        }],
-        path: [{
-          required: true, message: '请输入path', trigger: 'blur'
+        msg: [{
+          required: true, message: '请输入姓名', trigger: 'blur'
         }]
       }
     }
@@ -49,38 +43,10 @@ export default {
     }
   },
   methods: {
-    submit(item) {
+    submit() {
       this.$refs.detailForm.validate(valid => {
         if (!valid) { return }
-        if (this.isNew) {
-          this.newOsskey()
-        } else {
-          this.updateOsskey()
-        }
-      })
-    },
-    newOsskey() {
-      this.$store.dispatch('ossPath/createOsskey', this.form).then(res => {
-        if (res.code === 200) {
-          this.show = false
-          this.$emit('update')
-        } else {
-          console.error(res)
-        }
-      }).catch(e => {
-        this.$message(e.message)
-      })
-    },
-    updateOsskey() {
-      this.$store.dispatch('ossPath/updateOsskey', { id : this.detail.id, form: this.form}).then(res => {
-        if (res.code === 200) {
-          this.show = false
-          this.$emit('update')
-        } else {
-          console.error(res)
-        }
-      }).catch(e => {
-        this.$message(e.message)
+        this.$emit('update')
       })
     },
     openDialog() {
@@ -95,7 +61,7 @@ export default {
   },
   computed: {
     // 替换vuex的命名空间
-    ...mapState('ossPath', {
+    ...mapState('upload-image', {
       detail: state => state.detail,
       isNew: state => state.isNew
     }),

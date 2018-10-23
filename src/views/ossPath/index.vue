@@ -11,7 +11,6 @@
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column prop="name" label="名称"></el-table-column>
         <el-table-column prop="path" label="路径"></el-table-column>
-        <el-table-column prop="key" label="键值"></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <el-button type="primary" size="mini" @click="showDetail(scope.row)">编辑</el-button>

@@ -5,8 +5,9 @@ import user from './modules/user'
 import getters from './getters'
 import adminurl from '@/views/admin-url/store'
 import osskey from '@/views/osskey/store'
-import upload from '@/views/upload/store'
 import ossPath from '@/views/ossPath/store'
+import uploadImage from '@/views/upload-image/store'
+import uploadAssets from '@/views/upload-image/store'
 
 Vue.use(Vuex)
 
@@ -14,10 +15,11 @@ const store = new Vuex.Store({
   modules: {
     app,
     user,
-    upload,
     osskey,
     ossPath,
-    'admin-url': adminurl
+    'admin-url': adminurl,
+    'upload-image': uploadImage,
+    'upload-assets': uploadAssets
   },
   getters
 })
