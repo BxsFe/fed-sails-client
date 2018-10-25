@@ -16,7 +16,7 @@
         <el-form-item>
           <el-upload
             class="upload-demo"
-            action="http://localhost:1337/upload/assets"
+            :action="action"
             :multiple="false"
             :show-file-list="false"
             :data="data"
@@ -51,6 +51,7 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
+      action: process.env.BASE_API + '/upload/assets',
       imageUrl: '',
       fileList: [],
       data: {

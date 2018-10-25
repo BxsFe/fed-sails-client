@@ -49,6 +49,18 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/registry',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'registry',
+        component: () => import('@/views/registry'),
+        meta: { title: '仓库管理', icon: 'example' }
+      }
+    ]
+  },
+  {
     path: '/ossPath',
     component: Layout,
     children: [
